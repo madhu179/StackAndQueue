@@ -43,11 +43,17 @@ public class MyLinkedList {
 	}
 
 	public INode pop() {
-		INode tempfirstNode = this.head;
-		INode tempNode = this.head.getNext();
-		this.head.setNext(null);
-		this.head = tempNode;
-		return tempfirstNode;
+		if (this.head.getNext() != null) {
+			INode tempfirstNode = this.head;
+			INode tempNode = this.head.getNext();
+			this.head.setNext(null);
+			this.head = tempNode;
+			return tempfirstNode;
+		} else {
+			INode tempfirstNode = this.head;
+			this.head = null;
+			return tempfirstNode;
+		}
 	}
 
 	public INode popLast() {
@@ -86,6 +92,10 @@ public class MyLinkedList {
 	}
 
 	public int size() {
+		if (this.head == null) {
+			return 0;
+		}
+
 		INode tempNode = this.head;
 		int i = 0;
 		while (tempNode.getNext() != null) {
